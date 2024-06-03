@@ -4,6 +4,17 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 
 def plot_graph(v, k, s, q):
+    """
+    This function generates and displays a graph representing the total cost curve
+    based on annual demand (v), ordering cost (k), holding cost (s), and order quantity (q).
+
+    Args:
+        v (float): Annual demand for fuel.
+        k (float): Ordering cost per delivery.
+        s (float): Holding cost per liter per unit time.
+        q (float): Order quantity.
+    """
+    # Create a sequence of order quantity values for the x-axis.
     start = q * 0.5
     le = 100
     step = 1 / le
@@ -27,6 +38,10 @@ def plot_graph(v, k, s, q):
 
 
 def calculate_quantity():
+    """
+    This function retrieves user input, calculates the optimal order quantity using the Wilson EOQ formula,
+    and displays the results along with the total cost curve.
+    """
     # Get values from the entry boxes
     try:
         demand_for_year = float(entry1.get())
@@ -52,7 +67,9 @@ def calculate_quantity():
                optimal_order_quantity
                )
 
+# Create the main application window
 window = tk.Tk()
+# Set the title of the window
 window.title("Wilson Calculator")
 
 # Window background color
@@ -73,6 +90,7 @@ label1.grid(row=2, column=0, pady=5, padx=10)
 label2 = tk.Label(window, text="How much does it cost to order a refill?:", font=font_style)
 label2.grid(row=4, column=0, pady=5)
 
+# This text block explains the Wilson economic model and its application to gas stations.
 label3 = tk.Label(window, text="How much does it cost to store a liter of fuel per year?", font=font_style)
 label3.grid(row=6, column=0, pady=5)
 
@@ -108,7 +126,8 @@ label1 = tk.Label(window, text="Wilson economic model calculator", font=("Arial"
 # label1.grid(row=0, column=0, pady=5, padx=80)
 label1.grid(row=12, columnspan=2, sticky="nsew", pady=3)
 
-label3 = tk.Label(window, text="Finding the Optimal Order Quantity for a Gas Station\n\
+# Create a label explaining the Wilson economic model
+labele_xplaining = tk.Label(window, text="Finding the Optimal Order Quantity for a Gas Station\n\
 The gas station owner's goal is to minimize the total cost per year, which includes:\n\
 Cost per liter of fuel: This includes the purchase price (X1) and any transportation costs not dependent on quantity.\n\
 We will ignore this price in this model because the profit per liter does not change in relation to the quantity\
@@ -118,6 +137,6 @@ Holding cost: This cost is proportional to the amount of fuel stored and the tim
 S is the holding cost per liter per unit time (e.g., per year).\n\
 Q/2 is the average number of liters in storage.\n\
 We need to find the order quantity (Q) that minimizes the total cost per year.", font=font_style)
-label3.grid(row=13, columnspan=2, sticky="nsew", pady=15)
+labele_xplaining.grid(row=13, columnspan=2, sticky="nsew", pady=15)
 
 window.mainloop()
